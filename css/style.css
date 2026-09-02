@@ -560,7 +560,7 @@ button {
 
     object-fit: cover;
 
-    border-radius: 2px;
+    border-radius: 50%;
 
     border: 1px solid var(--border);
 
