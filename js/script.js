@@ -7,7 +7,9 @@ const navLinks = document.getElementById("nav-links");
 
 menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("active");
+    menuToggle.classList.toggle("active");
 });
+
 
 
 /* =========================================
@@ -19,9 +21,9 @@ const navigationLinks = document.querySelectorAll(".nav-links a");
 navigationLinks.forEach((link) => {
     link.addEventListener("click", () => {
         navLinks.classList.remove("active");
+        menuToggle.classList.remove("active");
     });
 });
-
 
 /* =========================================
    3. THEME TOGGLE

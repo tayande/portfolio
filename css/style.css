@@ -1,6 +1,8 @@
-/* =========================================
+/*
+   =========================================
    1. RESET & BASIC SETTINGS
-========================================= */
+   =========================================
+*/
 
 * {
     margin: 0;
@@ -12,67 +14,143 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0d0b09;
-    color: #eee9e3;
-    line-height: 1.6;
-}
-
-
-/* =========================================
-   2. CSS VARIABLES
-========================================= */
-
 :root {
-    --background: #0d0b09;
-    --background-soft: #15110e;
-    --card: #191411;
+    --bg: #0c0c0b;
+    --bg-2: #131311;
+    --bg-3: #1a1a17;
 
-    --text: #eee9e3;
-    --text-muted: #a9a19a;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-h: rgba(255, 255, 255, 0.14);
 
-    --accent: #a88b72;
-    --accent-light: #c3aa92;
+    --text: #e8e6df;
+    --text-2: #9b9890;
+    --text-3: #5e5c56;
 
-    --border: #2c241e;
+    --accent: #c9a84c;
+    --accent-2: #e2c47a;
+
+    --accent-dim: rgba(201, 168, 76, 0.12);
+    --accent-dim2: rgba(201, 168, 76, 0.06);
 
     --max-width: 1150px;
 
-    --transition: 0.3s ease;
+    --transition: 0.25s ease;
 }
 
 
-/* =========================================
-   3. LIGHT THEME
-========================================= */
-
-body.light-theme {
-    --background: #f4f1ed;
-    --background-soft: #ebe6df;
-    --card: #ffffff;
-
-    --text: #211d19;
-    --text-muted: #68615a;
-
-    --accent: #755d47;
-    --accent-light: #5e4938;
-
-    --border: #d8d0c7;
-}
-
-
-/* =========================================
-   4. GENERAL ELEMENTS
-========================================= */
+/*
+   =========================================
+   2. BODY
+   =========================================
+*/
 
 body {
-    background: var(--background);
+    position: relative;
+
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+
+    background: var(--bg);
     color: var(--text);
+
+    line-height: 1.8;
+
     transition:
-        background var(--transition),
-        color var(--transition);
+        background 0.25s ease,
+        color 0.25s ease;
 }
+
+/*
+   Subtle film-grain texture
+*/
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    opacity: 0.6;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.035'/%3E%3C/svg%3E");
+}
+
+
+/*
+   =========================================
+   3. LIGHT THEME
+   =========================================
+*/
+
+body.light-theme {
+    --bg: #f3f0ea;
+    --bg-2: #eae6de;
+    --bg-3: #dfdad1;
+
+    --border: rgba(30, 27, 22, 0.10);
+    --border-h: rgba(30, 27, 22, 0.18);
+
+    --text: #211f1b;
+    --text-2: #68645d;
+    --text-3: #8b877f;
+
+    --accent: #8d6d20;
+    --accent-2: #a9852f;
+
+    --accent-dim: rgba(141, 109, 32, 0.12);
+    --accent-dim2: rgba(141, 109, 32, 0.06);
+}
+
+
+/*
+   =========================================
+   4. TYPOGRAPHY
+   =========================================
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Fraunces", serif;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+}
+
+p {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+}
+
+.section-label,
+.eyebrow,
+.project-number,
+.timeline-date,
+.education-date,
+.project-tags span,
+.technology-list span,
+.button,
+.nav-links a,
+.footer-content,
+.next-project span {
+    font-family: "DM Mono", monospace;
+}
+
+
+/*
+   =========================================
+   5. GENERAL ELEMENTS
+   =========================================
+*/
 
 a {
     color: inherit;
@@ -81,6 +159,24 @@ a {
 
 button {
     font: inherit;
+}
+
+::selection {
+    background: var(--accent-dim);
+    color: var(--accent-2);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-3);
+    border-radius: 2px;
 }
 
 .container {
@@ -92,6 +188,10 @@ button {
     padding: 110px 0;
 }
 
+.section:nth-of-type(even) {
+    background: var(--bg-2);
+}
+
 .section-heading {
     max-width: 700px;
     margin-bottom: 55px;
@@ -99,44 +199,55 @@ button {
 
 .section-label,
 .eyebrow {
-    color: var(--accent-light);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
+    color: var(--accent);
+
+    font-size: 0.7rem;
+    font-weight: 400;
+
+    letter-spacing: 0.18em;
     text-transform: uppercase;
+
     margin-bottom: 14px;
 }
 
 .section-heading h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.15;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.1;
+
     margin-bottom: 18px;
 }
 
 .section-heading > p:last-child {
-    color: var(--text-muted);
+    color: var(--text-2);
 }
 
 
-/* =========================================
-   5. NAVIGATION
-========================================= */
+/*
+   =========================================
+   6. NAVIGATION
+   =========================================
+*/
 
 .site-header {
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100%;
+
     z-index: 1000;
 
-    background: rgba(13, 11, 9, 0.88);
+    background: rgba(12, 12, 11, 0.82);
+
     border-bottom: 1px solid var(--border);
 
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
 }
 
 .light-theme .site-header {
-    background: rgba(244, 241, 237, 0.88);
+    background: rgba(243, 240, 234, 0.82);
 }
 
 .navbar {
@@ -148,9 +259,12 @@ button {
 }
 
 .logo {
+    font-family: "Fraunces", serif;
+
     font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: -0.04em;
+    font-weight: 300;
+
+    letter-spacing: -0.03em;
 }
 
 .logo span {
@@ -164,8 +278,13 @@ button {
 }
 
 .nav-links a {
-    color: var(--text-muted);
-    font-size: 0.9rem;
+    color: var(--text-2);
+
+    font-size: 0.72rem;
+    font-weight: 400;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 
     transition: color var(--transition);
 }
@@ -184,32 +303,157 @@ button {
 }
 
 .theme-toggle {
-    font-size: 1.2rem;
+    font-family: "DM Mono", monospace;
+
+    font-size: 0.8rem;
+
     margin-left: 8px;
+
+    transition: color var(--transition);
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
 }
 
 .menu-toggle {
     display: none;
-    font-size: 1.5rem;
+
+    width: 22px;
+    height: 18px;
+
+    position: relative;
+}
+
+.menu-toggle::before,
+.menu-toggle::after,
+.menu-toggle span {
+    content: "";
+
+    position: absolute;
+    left: 0;
+
+    width: 22px;
+    height: 1.5px;
+
+    background: var(--text);
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.menu-toggle::before {
+    top: 0;
+}
+
+.menu-toggle span {
+    top: 8px;
+}
+
+.menu-toggle::after {
+    top: 16px;
 }
 
 
-/* =========================================
-   6. HERO
-========================================= */
+/*
+   =========================================
+   7. HERO
+   =========================================
+*/
 
 .hero {
+    position: relative;
+
     min-height: 100vh;
+
     padding-top: 130px;
 
     display: flex;
     align-items: center;
+
+    overflow: hidden;
+}
+
+/*
+   Hero grid
+*/
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            to right,
+            var(--border) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to bottom,
+            var(--border) 1px,
+            transparent 1px
+        );
+
+    background-size: 60px 60px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 25%,
+        black 85%,
+        black 100%
+    );
+
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 25%,
+        black 85%,
+        black 100%
+    );
+}
+
+/*
+   Hero glow
+*/
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 400px;
+
+    bottom: -180px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+
+    background: radial-gradient(
+        ellipse,
+        rgba(201, 168, 76, 0.08),
+        transparent 70%
+    );
 }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
+
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
+
     align-items: center;
+
     gap: 80px;
 }
 
@@ -218,22 +462,31 @@ button {
 }
 
 .hero h1 {
-    font-size: clamp(3rem, 7vw, 5.8rem);
-    line-height: 0.98;
-    letter-spacing: -0.055em;
+    font-size: clamp(3rem, 8vw, 7rem);
+
+    line-height: 0.95;
+
+    letter-spacing: -0.03em;
+
     margin-bottom: 30px;
 }
 
 .hero h1 span {
     display: block;
-    color: var(--accent-light);
+
+    color: var(--accent);
+
+    font-style: italic;
 }
 
 .hero-description {
     max-width: 620px;
 
-    color: var(--text-muted);
-    font-size: 1.05rem;
+    color: var(--text-2);
+
+    font-size: 1rem;
+
+    line-height: 1.8;
 
     margin-bottom: 35px;
 }
@@ -241,26 +494,31 @@ button {
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
+
     gap: 14px;
 }
 
 .button {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
     padding: 13px 22px;
 
-    border-radius: 4px;
+    border-radius: 2px;
 
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 400;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 
     transition:
-        transform var(--transition),
-        background var(--transition),
-        color var(--transition),
-        border-color var(--transition);
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .button:hover {
@@ -269,20 +527,25 @@ button {
 
 .button-primary {
     background: var(--accent);
-    color: #120f0c;
+    color: #100f0c;
+
+    border: 1px solid var(--accent);
 }
 
 .button-primary:hover {
-    background: var(--accent-light);
+    background: var(--accent-2);
+    border-color: var(--accent-2);
 }
 
 .button-secondary {
     border: 1px solid var(--border);
+
     color: var(--text);
 }
 
 .button-secondary:hover {
     border-color: var(--accent);
+    color: var(--accent);
 }
 
 .hero-image {
@@ -292,21 +555,81 @@ button {
 
 .hero-image img {
     width: min(100%, 360px);
+
     aspect-ratio: 1 / 1;
 
     object-fit: cover;
 
-    border-radius: 8px;
+    border-radius: 2px;
 
     border: 1px solid var(--border);
 
-    filter: saturate(0.85);
+    filter: saturate(0.8);
 }
 
 
-/* =========================================
-   7. ABOUT
-========================================= */
+/*
+   =========================================
+   8. HERO ENTRANCE ANIMATION
+   =========================================
+*/
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-tag,
+.hero-name,
+.hero-title,
+.hero-desc,
+.hero-actions,
+.hero-stats {
+    opacity: 0;
+
+    animation-name: fadeUp;
+    animation-duration: 0.8s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+.hero-tag {
+    animation-delay: 0.2s;
+}
+
+.hero-name {
+    animation-delay: 0.35s;
+}
+
+.hero-title {
+    animation-delay: 0.5s;
+}
+
+.hero-desc {
+    animation-delay: 0.65s;
+}
+
+.hero-actions {
+    animation-delay: 0.8s;
+}
+
+.hero-stats {
+    animation-delay: 0.95s;
+}
+
+
+/*
+   =========================================
+   9. ABOUT
+   =========================================
+*/
 
 .about-content {
     max-width: 800px;
@@ -314,19 +637,26 @@ button {
 
 .about-text {
     display: flex;
+
     flex-direction: column;
+
     gap: 20px;
 }
 
 .about-text p {
-    color: var(--text-muted);
-    font-size: 1.05rem;
+    color: var(--text-2);
+
+    font-size: 1rem;
+
+    line-height: 1.8;
 }
 
 
-/* =========================================
-   8. CURRENTLY
-========================================= */
+/*
+   =========================================
+   10. CURRENTLY
+   =========================================
+*/
 
 .currently-section {
     padding-top: 0;
@@ -334,14 +664,27 @@ button {
 
 .currently-card {
     display: flex;
+
     align-items: flex-start;
+
     gap: 25px;
 
     padding: 35px;
 
-    background: var(--background-soft);
+    background: var(--bg);
+
     border: 1px solid var(--border);
-    border-radius: 8px;
+
+    border-radius: 2px;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.currently-card:hover {
+    background: var(--bg-3);
+    border-color: var(--border-h);
 }
 
 .currently-icon {
@@ -351,54 +694,68 @@ button {
     flex-shrink: 0;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     border: 1px solid var(--border);
+
     border-radius: 50%;
 
-    color: var(--accent-light);
+    color: var(--accent);
+
+    background: var(--accent-dim);
 }
 
 .currently-card h2 {
     font-size: 1.5rem;
+
     margin-bottom: 10px;
 }
 
 .currently-card p:last-child {
-    color: var(--text-muted);
+    color: var(--text-2);
 }
 
 
-/* =========================================
-   9. SKILLS
-========================================= */
+/*
+   =========================================
+   11. SKILLS
+   =========================================
+*/
 
 .skills-grid {
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+
+    gap: 1px;
+
+    background: var(--border);
 }
 
 .skill-card {
     padding: 30px;
 
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    background: var(--bg);
+
+    border: none;
+    border-radius: 0;
 
     transition:
-        transform var(--transition),
-        border-color var(--transition);
+        background 0.25s ease,
+        transform 0.25s ease;
 }
 
 .skill-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
+    background: var(--bg-3);
+
+    transform: translateY(-2px);
 }
 
 .skill-card h3 {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
+
     margin-bottom: 18px;
 }
 
@@ -406,24 +763,35 @@ button {
     list-style: none;
 
     display: flex;
+
     flex-direction: column;
+
     gap: 9px;
 }
 
 .skill-card li {
-    color: var(--text-muted);
-    font-size: 0.92rem;
+    color: var(--text-2);
+
+    font-size: 0.95rem;
+
+    line-height: 1.7;
 }
 
 
-/* =========================================
-   10. PROJECTS
-========================================= */
+/*
+   =========================================
+   12. PROJECTS
+   =========================================
+*/
 
 .projects-grid {
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+
+    gap: 1px;
+
+    background: var(--border);
 }
 
 .project-card {
@@ -431,45 +799,83 @@ button {
 
     padding: 35px;
 
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    background: var(--bg);
+
+    border: none;
+
+    border-radius: 0;
+
+    overflow: hidden;
 
     transition:
-        transform var(--transition),
-        border-color var(--transition);
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+/*
+   Left accent bar
+*/
+
+.project-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 2px;
+    height: 100%;
+
+    background: var(--border);
+
+    transition: background 0.25s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
+    transform: translateY(-3px);
+
+    background: var(--bg-2);
+}
+
+.project-card:hover::before {
+    background: var(--accent);
 }
 
 .project-number {
     color: var(--accent);
 
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-size: 0.68rem;
+    font-weight: 400;
+
+    letter-spacing: 0.14em;
 
     margin-bottom: 25px;
 }
 
 .project-card h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+
+    line-height: 1.15;
+
     margin-bottom: 14px;
 }
 
 .project-card p {
-    color: var(--text-muted);
+    color: var(--text-2);
+
     font-size: 0.95rem;
+
+    line-height: 1.8;
 
     margin-bottom: 25px;
 }
 
 .project-tags {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 7px;
 
     margin-bottom: 28px;
@@ -479,24 +885,59 @@ button {
     padding: 5px 9px;
 
     border: 1px solid var(--border);
-    border-radius: 3px;
 
-    color: var(--text-muted);
+    border-radius: 2px;
 
-    font-size: 0.72rem;
+    color: var(--text-2);
+
+    background: transparent;
+
+    font-size: 0.68rem;
+
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.project-card:hover .project-tags span {
+    border-color: var(--accent);
+
+    color: var(--accent);
+
+    background: var(--accent-dim2);
 }
 
 .project-link {
-    color: var(--accent-light);
+    color: var(--text-3);
 
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-family: "DM Mono", monospace;
 
-    transition: color var(--transition);
+    font-size: 0.72rem;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    transition:
+        color 0.2s ease;
+}
+
+.project-link::after {
+    content: "→";
+
+    display: inline-block;
+
+    margin-left: 7px;
+
+    transition: transform 0.2s ease;
 }
 
 .project-link:hover {
-    color: var(--text);
+    color: var(--accent);
+}
+
+.project-link:hover::after {
+    transform: translateX(4px);
 }
 
 .github-link {
@@ -504,9 +945,11 @@ button {
 }
 
 
-/* =========================================
-   11. EXPERIENCE / TIMELINE
-========================================= */
+/*
+   =========================================
+   13. EXPERIENCE / TIMELINE
+   =========================================
+*/
 
 .timeline {
     position: relative;
@@ -525,80 +968,108 @@ button {
 .timeline-marker {
     position: absolute;
 
-    width: 11px;
-    height: 11px;
+    width: 8px;
+    height: 8px;
 
-    left: -41px;
-    top: 7px;
+    left: -40px;
+    top: 8px;
 
     background: var(--accent);
+
     border-radius: 50%;
 }
 
 .timeline-date {
-    color: var(--accent-light);
+    color: var(--accent);
 
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.68rem;
+    font-weight: 400;
+
+    letter-spacing: 0.1em;
 
     margin-bottom: 10px;
 }
 
 .timeline-content h3 {
     font-size: 1.4rem;
+
     margin-bottom: 4px;
 }
 
 .timeline-content h4 {
-    color: var(--text-muted);
+    color: var(--text-2);
 
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-family: "DM Mono", monospace;
+
+    font-size: 0.72rem;
+    font-weight: 400;
+
+    letter-spacing: 0.06em;
 
     margin-bottom: 18px;
 }
 
 .timeline-content > p:last-child {
-    color: var(--text-muted);
+    color: var(--text-2);
+
+    line-height: 1.8;
 }
 
 
-/* =========================================
-   12. EDUCATION
-========================================= */
+/*
+   =========================================
+   14. EDUCATION
+   =========================================
+*/
 
 .education-card {
     max-width: 800px;
 
     padding: 30px;
 
-    background: var(--card);
+    background: var(--bg);
+
     border: 1px solid var(--border);
-    border-radius: 8px;
+
+    border-radius: 2px;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.education-card:hover {
+    background: var(--bg-3);
+    border-color: var(--border-h);
 }
 
 .education-date {
-    color: var(--accent-light);
+    color: var(--accent);
 
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.68rem;
+    font-weight: 400;
+
+    letter-spacing: 0.1em;
 
     margin-bottom: 10px;
 }
 
 .education-card h3 {
     font-size: 1.35rem;
+
     margin-bottom: 8px;
 }
 
 .education-card p:last-child {
-    color: var(--text-muted);
+    color: var(--text-2);
 }
 
 
-/* =========================================
-   13. CONTACT
-========================================= */
+/*
+   =========================================
+   15. CONTACT
+   =========================================
+*/
 
 .contact-section {
     padding-bottom: 130px;
@@ -609,15 +1080,18 @@ button {
 }
 
 .contact-content h2 {
-    font-size: clamp(2.3rem, 5vw, 4rem);
-    line-height: 1.05;
-    letter-spacing: -0.04em;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+
+    line-height: 1.2;
+
+    letter-spacing: -0.02em;
 
     margin-bottom: 20px;
 }
 
 .contact-content > p:not(.section-label) {
-    color: var(--text-muted);
+    color: var(--text-2);
+
     margin-bottom: 35px;
 }
 
@@ -627,6 +1101,7 @@ button {
 
 .contact-link {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -634,22 +1109,25 @@ button {
 
     border-bottom: 1px solid var(--border);
 
-    color: var(--text-muted);
+    color: var(--text-2);
 
     transition:
-        color var(--transition),
-        padding-left var(--transition);
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
 .contact-link:hover {
-    color: var(--text);
-    padding-left: 8px;
+    color: var(--accent);
+
+    transform: translateX(4px);
 }
 
 
-/* =========================================
-   14. FOOTER
-========================================= */
+/*
+   =========================================
+   16. FOOTER
+   =========================================
+*/
 
 .site-footer {
     border-top: 1px solid var(--border);
@@ -659,23 +1137,30 @@ button {
 
 .footer-content {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
+
     gap: 20px;
 
-    color: var(--text-muted);
+    color: var(--text-3);
 
-    font-size: 0.8rem;
+    font-size: 0.64rem;
+
+    letter-spacing: 0.06em;
 }
 
 
-/* =========================================
-   15. SCROLL REVEAL ANIMATION
-========================================= */
+/*
+   =========================================
+   17. SCROLL REVEAL
+   =========================================
+*/
 
 .reveal {
     opacity: 0;
-    transform: translateY(20px);
+
+    transform: translateY(24px);
 
     transition:
         opacity 0.7s ease,
@@ -684,13 +1169,16 @@ button {
 
 .reveal.visible {
     opacity: 1;
-    transform: translateY(0);
+
+    transform: none;
 }
 
 
-/* =========================================
-   16. RESPONSIVE DESIGN — TABLETS
-========================================= */
+/*
+   =========================================
+   18. RESPONSIVE — TABLETS
+   =========================================
+*/
 
 @media (max-width: 900px) {
 
@@ -714,9 +1202,11 @@ button {
 }
 
 
-/* =========================================
-   17. RESPONSIVE DESIGN — MOBILE
-========================================= */
+/*
+   =========================================
+   19. RESPONSIVE — MOBILE
+   =========================================
+*/
 
 @media (max-width: 700px) {
 
@@ -738,13 +1228,14 @@ button {
 
         padding: 20px;
 
-        background: var(--background);
+        background: var(--bg);
 
         border-bottom: 1px solid var(--border);
 
         display: none;
 
         flex-direction: column;
+
         align-items: flex-start;
 
         gap: 18px;
@@ -760,6 +1251,7 @@ button {
 
     .hero {
         min-height: auto;
+
         padding-top: 130px;
         padding-bottom: 80px;
     }
@@ -769,7 +1261,7 @@ button {
     }
 
     .hero-description {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .hero-image img {
@@ -787,19 +1279,23 @@ button {
 
     .footer-content {
         flex-direction: column;
+
         align-items: flex-start;
     }
 }
 
 
-/* =========================================
-   18. VERY SMALL SCREENS
-========================================= */
+/*
+   =========================================
+   20. VERY SMALL SCREENS
+   =========================================
+*/
 
 @media (max-width: 400px) {
 
     .hero-actions {
         flex-direction: column;
+
         align-items: stretch;
     }
 
@@ -814,21 +1310,29 @@ button {
     }
 }
 
-/* =========================================
-   19. PROJECT PAGE
-========================================= */
+
+/*
+   =========================================
+   21. PROJECT PAGE
+   =========================================
+*/
 
 .project-hero {
     padding-top: 150px;
+
     padding-bottom: 70px;
 }
 
 .back-link {
     display: inline-block;
 
-    color: var(--text-muted);
+    color: var(--text-3);
 
-    font-size: 0.9rem;
+    font-family: "DM Mono", monospace;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.08em;
 
     margin-bottom: 45px;
 
@@ -836,15 +1340,17 @@ button {
 }
 
 .back-link:hover {
-    color: var(--text);
+    color: var(--accent);
 }
 
 .project-hero h1 {
     max-width: 900px;
 
     font-size: clamp(3rem, 7vw, 5.5rem);
-    line-height: 1;
-    letter-spacing: -0.055em;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.03em;
 
     margin-bottom: 25px;
 }
@@ -852,17 +1358,21 @@ button {
 .project-intro {
     max-width: 720px;
 
-    color: var(--text-muted);
+    color: var(--text-2);
 
-    font-size: 1.1rem;
+    font-size: 1rem;
+
+    line-height: 1.8;
 
     margin-bottom: 30px;
 }
 
 
-/* =========================================
-   20. PROJECT LAYOUT
-========================================= */
+/*
+   =========================================
+   22. PROJECT LAYOUT
+   =========================================
+*/
 
 .project-layout {
     display: grid;
@@ -887,17 +1397,19 @@ button {
 }
 
 .project-section h2 {
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
 
-    line-height: 1.2;
+    line-height: 1.15;
 
     margin-bottom: 22px;
 }
 
 .project-section p {
-    color: var(--text-muted);
+    color: var(--text-2);
 
     font-size: 1rem;
+
+    line-height: 1.8;
 
     margin-bottom: 18px;
 }
@@ -907,9 +1419,11 @@ button {
 }
 
 
-/* =========================================
-   21. PROJECT LIST
-========================================= */
+/*
+   =========================================
+   23. PROJECT LIST
+   =========================================
+*/
 
 .project-list {
     list-style: none;
@@ -926,7 +1440,7 @@ button {
 
     padding-left: 25px;
 
-    color: var(--text-muted);
+    color: var(--text-2);
 }
 
 .project-list li::before {
@@ -940,9 +1454,11 @@ button {
 }
 
 
-/* =========================================
-   22. TECHNOLOGY LIST
-========================================= */
+/*
+   =========================================
+   24. TECHNOLOGY LIST
+   =========================================
+*/
 
 .technology-list {
     display: flex;
@@ -957,17 +1473,34 @@ button {
 
     border: 1px solid var(--border);
 
-    border-radius: 4px;
+    border-radius: 2px;
 
-    color: var(--text-muted);
+    color: var(--text-2);
 
-    font-size: 0.8rem;
+    background: transparent;
+
+    font-size: 0.68rem;
+
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.technology-list span:hover {
+    border-color: var(--accent);
+
+    color: var(--accent);
+
+    background: var(--accent-dim2);
 }
 
 
-/* =========================================
-   23. PROJECT SIDEBAR
-========================================= */
+/*
+   =========================================
+   25. PROJECT SIDEBAR
+   =========================================
+*/
 
 .project-sidebar {
     position: sticky;
@@ -984,11 +1517,21 @@ button {
 .project-info-card {
     padding: 25px;
 
-    background: var(--card);
+    background: var(--bg-2);
 
     border: 1px solid var(--border);
 
-    border-radius: 8px;
+    border-radius: 2px;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.project-info-card:hover {
+    background: var(--bg-3);
+
+    border-color: var(--border-h);
 }
 
 .project-info-card h3 {
@@ -998,7 +1541,7 @@ button {
 }
 
 .project-info-card p {
-    color: var(--text-muted);
+    color: var(--text-2);
 
     font-size: 0.9rem;
 }
@@ -1014,9 +1557,11 @@ button {
 }
 
 
-/* =========================================
-   24. PROJECT NAVIGATION
-========================================= */
+/*
+   =========================================
+   26. PROJECT NAVIGATION
+   =========================================
+*/
 
 .project-navigation {
     padding-top: 40px;
@@ -1027,7 +1572,9 @@ button {
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 20px;
+    gap: 1px;
+
+    background: var(--border);
 }
 
 .next-project {
@@ -1039,41 +1586,49 @@ button {
 
     padding: 25px;
 
-    border: 1px solid var(--border);
+    background: var(--bg);
 
-    border-radius: 8px;
+    border: none;
+
+    border-radius: 0;
 
     transition:
-        border-color var(--transition),
-        transform var(--transition);
+        background 0.25s ease,
+        transform 0.25s ease;
 }
 
 .next-project:hover {
-    border-color: var(--accent);
+    background: var(--bg-3);
 
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 .next-project span {
-    color: var(--text-muted);
+    color: var(--text-3);
 
-    font-size: 0.75rem;
+    font-size: 0.68rem;
 
     text-transform: uppercase;
 
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
 }
 
 .next-project strong {
     color: var(--text);
 
-    font-size: 1rem;
+    font-family: "Fraunces", serif;
+
+    font-size: 1.1rem;
+
+    font-weight: 300;
 }
 
 
-/* =========================================
-   25. PROJECT PAGE RESPONSIVE DESIGN
-========================================= */
+/*
+   =========================================
+   27. PROJECT PAGE RESPONSIVE
+   =========================================
+*/
 
 @media (max-width: 800px) {
 
@@ -1108,7 +1663,7 @@ button {
     }
 
     .project-intro {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .project-section {
@@ -1129,5 +1684,27 @@ button {
 
     .project-nav-links {
         grid-template-columns: 1fr;
+    }
+}
+
+
+/*
+   =========================================
+   28. REDUCED MOTION
+   =========================================
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
