@@ -1,2 +1,2 @@
 # portfolio
-my official software engineering porfolio
+official software engineering porfolio for Terngu David Ayande

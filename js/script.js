@@ -1,6 +1,6 @@
-/* =========================================
+/* 
    1. MOBILE NAVIGATION
-========================================= */
+*/
 
 const menuToggle = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
@@ -12,9 +12,9 @@ menuToggle.addEventListener("click", () => {
 
 
 
-/* =========================================
+/*
    2. CLOSE MOBILE MENU AFTER CLICKING A LINK
-========================================= */
+*/
 
 const navigationLinks = document.querySelectorAll(".nav-links a");
 
@@ -25,9 +25,9 @@ navigationLinks.forEach((link) => {
     });
 });
 
-/* =========================================
+/* 
    3. THEME TOGGLE
-========================================= */
+*/
 
 const themeToggle = document.getElementById("theme-toggle");
 
@@ -43,9 +43,9 @@ themeToggle.addEventListener("click", () => {
 });
 
 
-/* =========================================
+/* 
    4. LOAD SAVED THEME
-========================================= */
+*/
 
 const savedTheme = localStorage.getItem("theme");
 
@@ -54,9 +54,9 @@ if (savedTheme === "light") {
 }
 
 
-/* =========================================
+/* 
    5. SCROLL REVEAL ANIMATION
-========================================= */
+*/
 
 const revealElements = document.querySelectorAll(".reveal");
 
