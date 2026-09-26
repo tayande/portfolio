@@ -8,11 +8,11 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>ASCII Art Web | David Ayande</title>
+    <title>PaddyCredit | David Ayande</title>
 
     <meta
         name="description"
-        content="A Go-based web application for generating ASCII art, built by David Ayande."
+        content="A Django micro-lending platform where borrowers apply for small loans, repay with uploaded receipts and unlock bigger loans over time, built by David Ayande."
     >
 
     <link rel="stylesheet" href="../css/style.css">
@@ -75,24 +75,28 @@
                 </a>
 
                 <p class="section-label">
-                    Project 04
+                    Project 05
                 </p>
 
                 <h1>
-                    ASCII Art Web
+                    PaddyCredit
                 </h1>
 
                 <p class="project-intro">
-                    A Go web application that provides a browser-based
-                    interface for generating ASCII art.
+                    A full-stack micro-lending platform where borrowers
+                    apply for small loans, repay with uploaded receipts
+                    and unlock bigger loans as they build a repayment
+                    history.
                 </p>
 
                 <div class="project-tags">
 
-                    <span>Go</span>
-                    <span>net/http</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
+                    <span>Python</span>
+                    <span>Django</span>
+                    <span>PostgreSQL</span>
+                    <span>SendGrid</span>
+                    <span>Cloudinary</span>
+                    <span>GitHub Actions</span>
 
                 </div>
 
@@ -122,18 +126,30 @@
                         </h2>
 
                         <p>
-                            ASCII Art Web is a web-based version of an
-                            ASCII art generator. It allows users to
-                            interact with the application through a
-                            browser rather than using a command-line
-                            interface.
+                            PaddyCredit is a lending web application built
+                            with Django. Borrowers create an account, apply
+                            for a loan between ₦5,000 and ₦100,000, and
+                            every application is reviewed by an admin
+                            before the money is paid straight to the
+                            borrower's bank account.
                         </p>
 
                         <p>
-                            The project provided practical experience
-                            with Go web development, HTTP servers,
-                            routing, HTML templates, form handling
-                            and serving web pages.
+                            Each loan moves through a full lifecycle, from
+                            pending and approved to disbursed, partially
+                            repaid, repaid or defaulted. Interest, penalties
+                            and outstanding balances are calculated with
+                            exact decimal arithmetic, and borrowers who repay
+                            in full can borrow more next time.
+                        </p>
+
+                        <p>
+                            The project gave me practical experience
+                            designing a multi-app Django codebase, modelling
+                            real financial workflows, securing user accounts,
+                            writing over 150 automated tests and running a
+                            production application on Render with a managed
+                            PostgreSQL database.
                         </p>
 
                     </div>
@@ -154,26 +170,48 @@
                         <ul class="project-list">
 
                             <li>
-                                Provides a browser-based interface
-                                for ASCII art generation
+                                Borrower accounts with email verification,
+                                password reset and email change using
+                                one-time codes
                             </li>
 
                             <li>
-                                Accepts user input through a web form
+                                Loan applications with a flat 20% interest
+                                rate over a 30-day repayment period
                             </li>
 
                             <li>
-                                Processes the input using Go
+                                Borrowing limit that grows by 50% after each
+                                fully repaid loan, up to ₦100,000
                             </li>
 
                             <li>
-                                Uses an HTTP server to handle
-                                browser requests
+                                Repayments submitted as receipt uploads and
+                                confirmed by an admin, with support for
+                                partial payments
                             </li>
 
                             <li>
-                                Displays generated ASCII art
-                                in the browser
+                                Admin dashboard for reviewing applications,
+                                disbursing loans, confirming repayments and
+                                managing users, with a log of admin actions
+                            </li>
+
+                            <li>
+                                Automated daily job that emails reminders
+                                before a loan is due and applies penalties
+                                to overdue loans
+                            </li>
+
+                            <li>
+                                In-app notifications, email updates and a
+                                support thread between borrowers and admins
+                            </li>
+
+                            <li>
+                                Protection against brute-force attacks,
+                                including login lockouts and hashed,
+                                rate-limited one-time codes
                             </li>
 
                         </ul>
@@ -195,8 +233,15 @@
 
                         <div class="technology-list">
 
-                            <span>Go</span>
-                            <span>net/http</span>
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>PostgreSQL</span>
+                            <span>SendGrid</span>
+                            <span>Cloudinary</span>
+                            <span>WhiteNoise</span>
+                            <span>Gunicorn</span>
+                            <span>GitHub Actions</span>
+                            <span>Render</span>
                             <span>HTML</span>
                             <span>CSS</span>
 
@@ -217,11 +262,14 @@
                             Project Links
                         </h3>
 
-                        <p>
-                            The GitHub repository will be linked
-                            here when the project repository is
-                            finalized.
-                        </p>
+                        <a
+                            href="https://paddycredit.onrender.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="project-link"
+                        >
+                            View Live Site →
+                        </a>
 
                     </div>
 
@@ -233,7 +281,7 @@
                         </h3>
 
                         <p>
-                            Completed
+                            Live
                         </p>
 
                     </div>
@@ -246,7 +294,7 @@
                         </h3>
 
                         <p>
-                            Web Application
+                            Full-Stack Web Application
                         </p>
 
                     </div>
@@ -267,25 +315,25 @@
                 <div class="project-nav-links">
 
                     <a
-                        href="groupie-tracker.html"
+                        href="ascii-art-web.html"
                         class="next-project"
                     >
                         <span>Previous Project</span>
 
                         <strong>
-                            ← Groupie Tracker
+                            ← ASCII Art Web
                         </strong>
                     </a>
 
 
                     <a
-                        href="paddycredit.html"
+                        href="../index.html#projects"
                         class="next-project"
                     >
-                        <span>Next Project</span>
+                        <span>Back to</span>
 
                         <strong>
-                            PaddyCredit →
+                            All Projects →
                         </strong>
                     </a>
 
