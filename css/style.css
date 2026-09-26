@@ -770,6 +770,11 @@ button {
     background: var(--border);
 }
 
+/* An odd last card spans the full row so no empty cell is left beside it */
+.projects-grid > .project-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+
 .project-card {
     position: relative;
 
